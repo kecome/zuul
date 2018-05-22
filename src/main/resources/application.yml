@@ -3,12 +3,39 @@ server:
 spring:
   application:
     name: zuul
+
+  datasource:
+      name: test
+      url: jdbc:mysql://112.74.52.200:8066/TESTDB?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+      username: root
+      password: 123456
+      # 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: stat
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+
   redis:
-    database: 0
-    host: 112.74.52.200
-    port: 2379
-    password: Lywx3403
-    timeout: 2000
+      database: 0
+      host: 112.74.52.200
+      port: 2379
+      password: Lywx3403
+      timeout: 2000
+mybatis:
+  mapper-locations: classpath:cn/lfungame/mapper/*.xml
+  type-aliases-package: cn.lfungame.model
+
 eureka:
   client:
     serviceUrl:
@@ -27,17 +54,7 @@ zuul:
       path: /game/**
       serviceId: game
   strip-prefix: false
-#zuul:
-#  routes:
-#    tease-game:
-#        path: /test/**
-#        serviceId: TEASE-GAME
-#    baidu:
-#        path: /second/**
-#        url: forward:http://cloud.spring.io/spring-cloud-static/Finchley.RC1/single/spring-cloud.html#netflix-zuul-starter
-#    third:
-#        path: /third/**
-#        url: forward:/3rd
-#    users:
-#      path: /test/**
-#      serviceId: TEASE-GAME
+logging:
+  level:
+    cn.lfungame.mapper: debug
+

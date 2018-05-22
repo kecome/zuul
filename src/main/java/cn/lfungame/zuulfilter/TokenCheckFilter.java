@@ -41,6 +41,7 @@ public class TokenCheckFilter extends ZuulFilter {
         if (request.getParameter("sample") != null) {
             // put the serviceId in `RequestContext`
             ctx.put(SERVICE_ID_KEY, request.getParameter("foo"));
+
         }
         return null;
     }

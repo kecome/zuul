@@ -1,5 +1,7 @@
 import cn.lfungame.zuulfilter.TokenCheckFilter;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
@@ -11,9 +13,10 @@ import org.springframework.context.annotation.ComponentScan;
  * @Date: 2018/5/15 09:09
  * @Description:
  */
-@SpringBootApplication
-@EnableZuulProxy
+@EnableAutoConfiguration
 @ComponentScan(basePackages={"cn.lfungame"})
+@MapperScan("cn.lfungame.mapper")
+@EnableZuulProxy
 @EnableEurekaClient
 public class BootApplication {
 
