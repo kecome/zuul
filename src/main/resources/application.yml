@@ -32,6 +32,12 @@ spring:
       port: 2379
       password: Lywx3403
       timeout: 2000
+      jedis:
+        pool:
+          max-active: 2000
+          max-idle: 500
+          max-wait: 1000
+          min-idle: 50
 mybatis:
   mapper-locations: classpath:cn/lfungame/mapper/*.xml
   type-aliases-package: cn.lfungame.model

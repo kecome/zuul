@@ -25,7 +25,4 @@ public class TokenGen {
         return token;
     }
 
-    public static void main(String[] args) throws UnsupportedEncodingException {
-        System.out.println(genToken());
-    }
 }
