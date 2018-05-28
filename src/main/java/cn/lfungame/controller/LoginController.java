@@ -1,6 +1,7 @@
 package cn.lfungame.controller;
 
 import cn.lfungame.model.User;
+import cn.lfungame.service.RedisService;
 import cn.lfungame.service.UserService;
 import cn.lfungame.util.JsonUtil;
 import cn.lfungame.util.ResponseMsg;
@@ -29,6 +30,8 @@ public class LoginController {
     private StringRedisTemplate stringRedisTemplate;
     @Autowired
     private UserService userService;
+    @Autowired
+    private RedisService redisService;
 
     @RequestMapping(value = "/")
     Object login(@RequestBody User user) throws Exception {

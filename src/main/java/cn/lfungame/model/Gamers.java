@@ -1,0 +1,192 @@
+package cn.lfungame.model;
+
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * @Auther: xuke
+ * @Date: 2018/5/28 16:51
+ * @Description: 游戏玩家
+ */
+public class Gamers implements Serializable {
+    /**
+     * 玩家id
+     */
+    private Long id;
+    /**
+     * 微信登录成功后返回id
+     */
+    private Long wxId;
+    /**
+     * 手机号码
+     */
+    private String phoneNumber;
+    /**
+     * 呢称
+     */
+    private String nickName;
+    /**
+     * 头像
+     */
+    private String head;
+    /**
+     * 性别
+     */
+    private Integer sex;
+    /**
+     * 出生年月
+     */
+    private Date age;
+    /**
+     * 星座 id
+     */
+    private Integer starSignId;
+    /**
+     * 个性签名
+     */
+    private String signature;
+    /**
+     * 积分
+     */
+    private Long score;
+    /**
+     * 经验值
+     */
+    private Long expPoints;
+    /**
+     * 金币
+     */
+    private Long goldCoin;
+    /**
+     * 钻石
+     */
+    private Long diamonds;
+    /**
+     * 创建时间
+     */
+    private Date created;
+    /**
+     * 修改时间
+     */
+    private Date updated;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getWxId() {
+        return wxId;
+    }
+
+    public void setWxId(Long wxId) {
+        this.wxId = wxId;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getHead() {
+        return head;
+    }
+
+    public void setHead(String head) {
+        this.head = head;
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
+
+    public Date getAge() {
+        return age;
+    }
+
+    public void setAge(Date age) {
+        this.age = age;
+    }
+
+    public Integer getStarSignId() {
+        return starSignId;
+    }
+
+    public void setStarSignId(Integer starSignId) {
+        this.starSignId = starSignId;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
+
+    public Long getScore() {
+        return score;
+    }
+
+    public void setScore(Long score) {
+        this.score = score;
+    }
+
+    public Long getExpPoints() {
+        return expPoints;
+    }
+
+    public void setExpPoints(Long expPoints) {
+        this.expPoints = expPoints;
+    }
+
+    public Long getGoldCoin() {
+        return goldCoin;
+    }
+
+    public void setGoldCoin(Long goldCoin) {
+        this.goldCoin = goldCoin;
+    }
+
+    public Long getDiamonds() {
+        return diamonds;
+    }
+
+    public void setDiamonds(Long diamonds) {
+        this.diamonds = diamonds;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Date getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(Date updated) {
+        this.updated = updated;
+    }
+}
