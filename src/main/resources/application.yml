@@ -63,4 +63,11 @@ zuul:
 logging:
   level:
     cn.lfungame.mapper: debug
+oss:
+  endpoint: oss-cn-shenzhen.aliyuncs.com
+  accessKeyId: LTAI5q19QqAyDDEO
+  accessKeySecret: rnzanAg7vc31EQxbhCLxtdT47PGu8I
+  roleArn: acs:ram::1605119804803037:role/aliyunosstokengeneratorrole
+  roleSessionName: external-username
+
 
