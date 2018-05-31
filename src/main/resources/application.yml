@@ -61,13 +61,13 @@ oss:
   accessKeySecret: rnzanAg7vc31EQxbhCLxtdT47PGu8I
   roleArn: acs:ram::1605119804803037:role/aliyunosstokengeneratorrole
   roleSessionName: external-username
-#sms:
-#  product: Dysmsapi
-#  domain: dysmsapi.aliyuncs.com
-#  accessKeyId: LTAI5q19QqAyDDEO
-#  accessKeySecret: rnzanAg7vc31EQxbhCLxtdT47PGu8I
-#  signName: 乐云无线
-#  templateCode: SMS_136161034
+sms:
+  product: Dysmsapi
+  domain: dysmsapi.aliyuncs.com
+  accessKeyId: LTAI5q19QqAyDDEO
+  accessKeySecret: rnzanAg7vc31EQxbhCLxtdT47PGu8I
+  signName: 乐云无线
+  templateCode: SMS_136161034
 
 
 

@@ -22,22 +22,22 @@ import org.springframework.stereotype.Service;
 public class SmsService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-   // @Value("${sms.product}")
+    @Value("${sms.product}")
     private String product;
 
-    //@Value("${sms.domain}")
+    @Value("${sms.domain}")
     private String domain;
 
-    //@Value("${sms.accessKeyId}")
+    @Value("${sms.accessKeyId}")
     private String accessKeyId;
 
-   // @Value("${sms.accessKeySecret}")
+    @Value("${sms.accessKeySecret}")
     private String accessKeySecret;
 
-    //@Value("${sms.signName}")
+    @Value("${sms.signName}")
     private String signName;
 
-   // @Value("${sms.templateCode}")
+    @Value("${sms.templateCode}")
     private String templateCode;
 
     public int sendSms(String telephone) throws ClientException {

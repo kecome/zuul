@@ -4,7 +4,6 @@ import cn.lfungame.model.OssAK;
 import cn.lfungame.service.OssService;
 import cn.lfungame.util.ResponseMsg;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,4 +25,5 @@ public class OssController {
         msg.setData(ak);
         return msg;
     }
+
 }
