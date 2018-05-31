@@ -1,7 +1,6 @@
 package cn.lfungame.controller;
 
-import cn.lfungame.model.OssAK;
-import cn.lfungame.service.OssService;
+import cn.lfungame.service.SmsService;
 import cn.lfungame.util.ResponseMsg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,20 +9,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @Auther: xuke
- * @Date: 2018/5/30 14:32
+ * @Date: 2018/5/30 16:35
  * @Description:
  */
 @RestController
-@RequestMapping(value = "/oss")
-public class OssController {
-    @Autowired
-    private OssService ossService;
+@RequestMapping(value = "/sms")
+public class SmsController {
 
-    @RequestMapping(value = "/liaowan")
+    @Autowired
+    private SmsService smsService;
+
+    @PostMapping(value = "/send")
     Object liaowanBucket() throws Exception {
         ResponseMsg msg = new ResponseMsg<>();
-        OssAK ak = ossService.getAK();
-        msg.setData(ak);
+        smsService.sendSms("18682339084");
         return msg;
     }
 }

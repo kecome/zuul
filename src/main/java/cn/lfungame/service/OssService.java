@@ -31,20 +31,21 @@ public class OssService {
     private String roleSessionName;
 
     String policy =  "{\n" +
-            "  \"Version\": \"1\",\n" +
             "  \"Statement\": [\n" +
             "    {\n" +
-            "      \"Effect\": \"Allow\",\n" +
             "      \"Action\": [\n" +
-            "        \"oss:*\"\n" +
+            "        \"oss:GetObject\",\n" +
+            "        \"oss:PutObject\",\n" +
+            "        \"oss:DeleteObject\",\n" +
+            "        \"oss:ListParts\",\n" +
+            "        \"oss:AbortMultipartUpload\",\n" +
+            "        \"oss:ListObjects\"\n" +
             "      ],\n" +
-            "      \"Resource\": [\n" +
-            "        \"acs:oss:*:*:liaowan\",\n" +
-            "        \"acs:oss:*:*:liaowan/\"\n" +
-            "      ],\n" +
-            "      \"Condition\": {}\n" +
+            "      \"Effect\": \"Allow\",\n" +
+            "      \"Resource\": [\"acs:oss:*:*:liaowan/*\", \"acs:oss:*:*:liaowan\"]\n" +
             "    }\n" +
-            "  ]\n" +
+            "  ],\n" +
+            "  \"Version\": \"1\"\n" +
             "}";
     public OssAK getAK() {
         OssAK ak = new OssAK();
