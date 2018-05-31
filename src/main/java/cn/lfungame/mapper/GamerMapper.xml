@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lfungame.mapper.GamerMapper">
+    <resultMap id="gamerResultMap" type="Gamer">
+        <id property="id" column="id" />
+        <result property="wxId" column="wxId"/>
+        <result property="deviceId" column="deviceId"/>
+        <result property="created" column="created"/>
+        <result property="updated" column="updated"/>
+    </resultMap>
+
+    <select id="selectGamerById" parameterType="Long" resultType="Gamer">
+        select * from user where id = #{id}
+    </select>
+
+    <select id="selectGamerByWxId" parameterType="Long" resultType="Gamer">
+        select * from user where wxId = #{wxId} limit 1
+    </select>
+
+    <insert id="insertGamer" parameterType="cn.lfungame.model.Gamer">
+        insert into user
+               (id,wxId,deviceId,phoneNumber,nickName,head,sex,age,starSignId,provinceId,cityId,signature,score,expPoints,goldCoin,diamonds,created, updated)
+        values(#{id},#{wxId},#{deviceId},#{phoneNumber},#{nickName},#{head},#{sex},#{age},#{starSignId},#{provinceId},#{cityId},#{signature},#{score},#{expPoints},#{goldCoin},#{diamonds},#{created},#{updated})
+    </insert>
+
+</mapper>

@@ -8,7 +8,7 @@ import java.util.Date;
  * @Date: 2018/5/28 16:51
  * @Description: 游戏玩家
  */
-public class Gamers implements Serializable {
+public class Gamer implements Serializable {
     /**
      * 玩家id
      */

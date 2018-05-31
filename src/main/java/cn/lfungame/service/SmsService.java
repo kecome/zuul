@@ -1,6 +1,4 @@
 package cn.lfungame.service;
-
-import cn.lfungame.util.ResponseMsg;
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.IAcsClient;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest;
@@ -10,8 +8,12 @@ import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Auther: xuke
@@ -40,11 +42,13 @@ public class SmsService {
     @Value("${sms.templateCode}")
     private String templateCode;
 
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+
     public int sendSms(String telephone) throws ClientException {
         logger.info("+++++++++++++++++++++获取手机号码为："+telephone+"+++++++++++++++");
         int code = (int)(Math.random()*9999)+1000;//随机生成3-5位数的验证码
         logger.info("=================验证码生成成功，验证码为："+code+"=================");
-        ResponseMsg msg = new ResponseMsg<>();
         // 可自助调整超时时间
         System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
         System.setProperty("sun.net.client.defaultReadTimeout", "10000");
@@ -69,9 +73,7 @@ public class SmsService {
         // hint 此处可能会抛出异常，注意catch
         SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);
         if(sendSmsResponse.getCode()!= null && sendSmsResponse.getCode().equals("OK")){
-            msg.setCode(0);
-            msg.setData(sendSmsResponse);
-            msg.setMessage("短信发送成功！");
+            stringRedisTemplate.opsForValue().set(telephone, code+"", 1, TimeUnit.MINUTES);
         }
         return code;
     }
