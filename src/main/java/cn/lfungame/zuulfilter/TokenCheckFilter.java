@@ -1,8 +1,10 @@
 package cn.lfungame.zuulfilter;
 
+import cn.lfungame.service.TokenService;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,6 +18,9 @@ import static org.springframework.cloud.netflix.zuul.filters.support.FilterConst
  * @Description: 后端接口访问token验证
  */
 public class TokenCheckFilter extends ZuulFilter {
+
+    @Autowired
+    private TokenService tokenService;
 
     @Override
     public String filterType() {
@@ -37,8 +42,8 @@ public class TokenCheckFilter extends ZuulFilter {
     @Override
     public Object run() throws ZuulException {
         RequestContext ctx = RequestContext.getCurrentContext();
-        ctx.addZuulRequestHeader("id", "123");
         HttpServletRequest request = ctx.getRequest();
+        ctx.addZuulRequestHeader("id", tokenService.getToken(request.getHeader("token")) + "");
         if (request.getParameter("sample") != null) {
             // put the serviceId in `RequestContext`
             ctx.put(SERVICE_ID_KEY, request.getParameter("foo"));
