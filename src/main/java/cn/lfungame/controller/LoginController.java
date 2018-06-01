@@ -1,5 +1,6 @@
 package cn.lfungame.controller;
 
+import cn.lfungame.interceptor.LoginIgnore;
 import cn.lfungame.model.Gamer;
 import cn.lfungame.model.Token;
 import cn.lfungame.service.GamerService;
@@ -130,6 +131,7 @@ public class LoginController {
         return msg;
     }
 
+    //@LoginIgnore
     @RequestMapping(value = "/index")
     Object index(@RequestBody Gamer param) throws Exception {
         ResponseMsg msg = new ResponseMsg();

@@ -25,7 +25,7 @@ spring:
       poolPreparedStatements: true
       maxOpenPreparedStatements: 20
   redis:
-      database: 5
+      database: 0
       host: 112.74.52.200
       port: 2379
       password: Lywx3403

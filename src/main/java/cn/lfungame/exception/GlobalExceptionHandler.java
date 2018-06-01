@@ -40,7 +40,7 @@ public class GlobalExceptionHandler {
             BusinessException businessException = (BusinessException) e;
             resp.setCode(businessException.getCode());
             resp.setMessage(businessException.getMsg());
-            //logger.error("自定义异常["+businessException.getCode()+"]:" + businessException.getMsg(), e);
+            logger.error("自定义异常["+businessException.getCode()+"]:" + businessException.getMsg(), e);
             if(businessException.getCode() == ErrorInfo.USER_IS_NULL.code) {
                 response.setStatus(HttpStatus.UNAUTHORIZED.value());
             }else {
@@ -52,7 +52,7 @@ public class GlobalExceptionHandler {
             RuntimeException runtimeException = (RuntimeException) e;
             resp.setCode(ErrorInfo.RUNTIME_EXCEPTIOON.code);
             resp.setMessage(ErrorInfo.RUNTIME_EXCEPTIOON.desc);
-           // logger.error("[" + ErrorInfo.RUNTIME_EXCEPTIOON.code + "]" + ErrorInfo.RUNTIME_EXCEPTIOON.desc + ":", e);
+            logger.error("[" + ErrorInfo.RUNTIME_EXCEPTIOON.code + "]" + ErrorInfo.RUNTIME_EXCEPTIOON.desc + ":", e);
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
             return resp;
         }
@@ -60,7 +60,7 @@ public class GlobalExceptionHandler {
             Exception exception = (Exception) e;
             resp.setCode(ErrorInfo.RUNTIME_EXCEPTIOON.code);
             resp.setMessage(ErrorInfo.RUNTIME_EXCEPTIOON.desc);
-           // logger.error("[" + ErrorInfo.RUNTIME_EXCEPTIOON.code + "]" + ErrorInfo.RUNTIME_EXCEPTIOON.desc + ":", e);
+            logger.error("[" + ErrorInfo.RUNTIME_EXCEPTIOON.code + "]" + ErrorInfo.RUNTIME_EXCEPTIOON.desc + ":", e);
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
             return resp;
         }
