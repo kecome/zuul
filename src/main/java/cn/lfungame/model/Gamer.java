@@ -16,11 +16,15 @@ public class Gamer implements Serializable {
     /**
      * 微信登录成功后返回id
      */
-    private Long wxId;
+    private String wxId;
     /**
      * 手机号码
      */
     private String phoneNumber;
+    /**
+     * 玩家设备唯一标识id
+     */
+    private String deviceId;
     /**
      * 呢称
      */
@@ -76,14 +80,6 @@ public class Gamer implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getWxId() {
-        return wxId;
-    }
-
-    public void setWxId(Long wxId) {
-        this.wxId = wxId;
     }
 
     public String getPhoneNumber() {
@@ -188,5 +184,21 @@ public class Gamer implements Serializable {
 
     public void setUpdated(Date updated) {
         this.updated = updated;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public String getWxId() {
+        return wxId;
+    }
+
+    public void setWxId(String wxId) {
+        this.wxId = wxId;
     }
 }

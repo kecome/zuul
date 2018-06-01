@@ -1,6 +1,7 @@
 package cn.lfungame.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @Auther: xuke
@@ -13,9 +14,9 @@ public class Token implements Serializable {
      */
     private String token;
     /**
-     * 有效时间(分m)
+     * 有效时间
      */
-    private Integer period;
+    private Date expiration;
 
     public String getToken() {
         return token;
@@ -25,11 +26,11 @@ public class Token implements Serializable {
         this.token = token;
     }
 
-    public Integer getPeriod() {
-        return period;
+    public Date getExpiration() {
+        return expiration;
     }
 
-    public void setPeriod(Integer period) {
-        this.period = period;
+    public void setExpiration(Date expiration) {
+        this.expiration = expiration;
     }
 }

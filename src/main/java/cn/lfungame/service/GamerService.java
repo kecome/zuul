@@ -5,6 +5,8 @@ import cn.lfungame.model.Gamer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Auther: xuke
  * @Date: 2018/5/31 18:25
@@ -21,7 +23,19 @@ public class GamerService {
     public void insertGamer(Gamer gamer) {
         gamerMapper.insertGamer(gamer);
     }
-    public Gamer selectGamerByWxId(Long wxId) {
+    public Gamer selectGamerByWxId(String wxId) {
         return gamerMapper.selectGamerByWxId(wxId);
+    }
+
+    public List<Gamer> selectGamerByDeviceId(String deviceId) {
+        return gamerMapper.selectGamerByDeviceId(deviceId);
+    }
+
+    public void updateGamer(Gamer gamer) {
+        gamerMapper.updateGamer(gamer);
+    }
+
+    public Gamer selectGamerByPhoneNumber(String phoneNumber) {
+        return gamerMapper.selectGamerByPhoneNumber(phoneNumber);
     }
 }

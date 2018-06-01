@@ -1,5 +1,7 @@
 package cn.lfungame.util;
 
+import org.springframework.stereotype.Component;
+
 /**
  * @Auther: xuke
  * @Date: 2018/5/15 17:33
@@ -39,16 +41,18 @@ public class SnowflakeIdWorker {
     private final long sequenceMask = -1L ^ (-1L << sequenceBits);
 
     /** 工作机器ID(0~31) */
-    private long workerId;
+    private long workerId = 10L;
 
     /** 数据中心ID(0~31) */
-    private long datacenterId;
+    private long datacenterId = 11L;
 
     /** 毫秒内序列(0~4095) */
     private long sequence = 0L;
 
     /** 上次生成ID的时间截 */
     private long lastTimestamp = -1L;
+
+    private static SnowflakeIdWorker instance = new SnowflakeIdWorker(2,4);
 
     //==============================Constructors=====================================
     /**
@@ -65,6 +69,10 @@ public class SnowflakeIdWorker {
         }
         this.workerId = workerId;
         this.datacenterId = datacenterId;
+    }
+
+    public static SnowflakeIdWorker getInstance() {
+        return instance;
     }
 
     // ==============================Methods==========================================

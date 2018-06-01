@@ -7,22 +7,91 @@
         <id property="id" column="id" />
         <result property="wxId" column="wxId"/>
         <result property="deviceId" column="deviceId"/>
+        <result property="phoneNumber" column="phoneNumber"/>
+        <result property="nickName" column="nickName"/>
+        <result property="head" column="head"/>
+        <result property="sex" column="sex"/>
+        <result property="age" column="age"/>
+        <result property="starSignId" column="starSignId"/>
+        <result property="provinceId" column="provinceId"/>
+        <result property="signature" column="signature"/>
+        <result property="score" column="score"/>
+        <result property="expPoints" column="expPoints"/>
+        <result property="goldCoin" column="goldCoin"/>
+        <result property="diamonds" column="diamonds"/>
         <result property="created" column="created"/>
         <result property="updated" column="updated"/>
     </resultMap>
 
+    <update id="updateGamer" parameterType="Gamer">
+        update gamer
+        <trim prefix="set" suffixOverrides="," suffix=" where id = #{id} ">
+            updated=#{updated},
+            <if test='wxId != null and wxId!=""'>
+                wxId=#{wxId},
+            </if>
+            <if test='deviceId != null and deviceId!=""'>
+                deviceId=#{deviceId},
+            </if>
+            <if test='phoneNumber != null and phoneNumber!=""'>
+                deviceId=#{phoneNumber},
+            </if>
+            <if test='nickName != null and nickName!=""'>
+                nickName=#{nickName},
+            </if>
+            <if test='head != null and head!=""'>
+                head=#{head},
+            </if>
+            <if test='sex != null'>
+                sex=#{sex},
+            </if>
+            <if test='age != null'>
+            age=#{age},
+            </if>
+            <if test='starSignId != null'>
+                starSignId=#{starSignId},
+            </if>
+            <if test='provinceId != null'>
+                provinceId=#{provinceId},
+            </if>
+            <if test='signature != null and signature!=""'>
+                signature=#{signature},
+            </if>
+            <if test='score != null'>
+                score=#{score},
+            </if>
+            <if test='expPoints != null'>
+                expPoints=#{expPoints},
+            </if>
+            <if test='goldCoin != null'>
+                goldCoin=#{goldCoin},
+            </if>
+
+            <if test='diamonds != null'>
+                diamonds=#{diamonds},
+            </if>
+        </trim>
+    </update>
+
     <select id="selectGamerById" parameterType="Long" resultType="Gamer">
-        select * from user where id = #{id}
+        select * from gamer where id = #{id}
     </select>
 
-    <select id="selectGamerByWxId" parameterType="Long" resultType="Gamer">
-        select * from user where wxId = #{wxId} limit 1
+    <select id="selectGamerByWxId" parameterType="String" resultType="Gamer">
+        select * from gamer where wxId = #{wxId} limit 1
+    </select>
+
+    <select id="selectGamerByPhoneNumber" parameterType="String" resultType="Gamer">
+        select * from gamer where phoneNumber = #{phoneNumber} limit 1
+    </select>
+
+    <select id="selectGamerByDeviceId" parameterType="String" resultType="Gamer">
+        select * from gamer where deviceId = #{deviceId}
     </select>
 
     <insert id="insertGamer" parameterType="cn.lfungame.model.Gamer">
-        insert into user
+        insert into gamer
                (id,wxId,deviceId,phoneNumber,nickName,head,sex,age,starSignId,provinceId,cityId,signature,score,expPoints,goldCoin,diamonds,created, updated)
         values(#{id},#{wxId},#{deviceId},#{phoneNumber},#{nickName},#{head},#{sex},#{age},#{starSignId},#{provinceId},#{cityId},#{signature},#{score},#{expPoints},#{goldCoin},#{diamonds},#{created},#{updated})
     </insert>
-
 </mapper>
