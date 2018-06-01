@@ -37,6 +37,7 @@ public class TokenCheckFilter extends ZuulFilter {
     @Override
     public Object run() throws ZuulException {
         RequestContext ctx = RequestContext.getCurrentContext();
+        ctx.addZuulRequestHeader("id", "123");
         HttpServletRequest request = ctx.getRequest();
         if (request.getParameter("sample") != null) {
             // put the serviceId in `RequestContext`

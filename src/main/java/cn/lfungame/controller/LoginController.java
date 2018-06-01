@@ -33,6 +33,7 @@ public class LoginController {
     @Autowired
     private TokenService tokenService;
 
+    @LoginIgnore
     @RequestMapping(value = "/login")
     Object login(@RequestBody Gamer param) throws Exception {
         ResponseMsg msg = new ResponseMsg();
@@ -115,6 +116,7 @@ public class LoginController {
         return msg;
     }
 
+    @LoginIgnore
     @RequestMapping(value = "/checkPhone")
     Object checkPhone(@RequestBody Gamer param) throws Exception {
         ResponseMsg msg = new ResponseMsg();
