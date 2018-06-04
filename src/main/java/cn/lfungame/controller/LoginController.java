@@ -1,5 +1,7 @@
 package cn.lfungame.controller;
 
+import cn.lfungame.exception.BusinessException;
+import cn.lfungame.exception.ErrorInfo;
 import cn.lfungame.interceptor.LoginIgnore;
 import cn.lfungame.model.Gamer;
 import cn.lfungame.model.Token;
@@ -9,6 +11,7 @@ import cn.lfungame.util.ResponseMsg;
 import cn.lfungame.util.SnowflakeIdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,8 +37,11 @@ public class LoginController {
     private TokenService tokenService;
 
     @LoginIgnore
-    @RequestMapping(value = "/login")
+    @PostMapping(value = "/login")
     Object login(@RequestBody Gamer param) throws Exception {
+        if(StringUtils.isEmpty(param.getWxId()) && StringUtils.isEmpty(param.getPhoneNumber()) && StringUtils.isEmpty(param.getDeviceId())) {
+            throw new BusinessException(ErrorInfo.ARGUMENT_NULL_ALL.code, ErrorInfo.ARGUMENT_NULL_ALL.desc);
+        }
         ResponseMsg msg = new ResponseMsg();
         //微信号登录
         if(!StringUtils.isEmpty(param.getWxId())) {
@@ -117,7 +123,7 @@ public class LoginController {
     }
 
     @LoginIgnore
-    @RequestMapping(value = "/checkPhone")
+    @PostMapping(value = "/checkPhone")
     Object checkPhone(@RequestBody Gamer param) throws Exception {
         ResponseMsg msg = new ResponseMsg();
         List<Gamer> list = gamerService.selectGamerByDeviceId(param.getDeviceId());
