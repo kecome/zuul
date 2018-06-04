@@ -73,7 +73,7 @@ public class LoginController {
                 return msg;
             }
             //通过微信id找到玩家
-            Token token = tokenService.genToken(param.getId(), 1, TimeUnit.DAYS);
+            Token token = tokenService.genToken(gamer.getId(), 1, TimeUnit.DAYS);
             msg.setData(token);
             return msg;
         }
@@ -102,7 +102,7 @@ public class LoginController {
         //游客登录
         List<Gamer> list = gamerService.selectGamerByDeviceId(param.getDeviceId());
         for(Gamer g : list) {  //找出游客帐号
-            if(StringUtils.isEmpty(g.getPhoneNumber()) || StringUtils.isEmpty(g.getWxId())) {
+            if(StringUtils.isEmpty(g.getPhoneNumber()) && StringUtils.isEmpty(g.getWxId())) {
                 Token token = tokenService.genToken(g.getId(), 1, TimeUnit.DAYS);
                 msg.setData(token);
                 return msg;
@@ -127,8 +127,8 @@ public class LoginController {
     Object checkPhone(@RequestBody Gamer param) throws Exception {
         ResponseMsg msg = new ResponseMsg();
         List<Gamer> list = gamerService.selectGamerByDeviceId(param.getDeviceId());
-        for(Gamer g : list) {  //找出游客帐号
-            if(!StringUtils.isEmpty(g.getPhoneNumber()) || StringUtils.isEmpty(g.getWxId())) {
+        for(Gamer g : list) {  //找出手机帐号
+            if(!StringUtils.isEmpty(g.getPhoneNumber())) {
                 Map<String, Object> map = new HashMap<>();
                 map.put("phoneNumber", g.getPhoneNumber());
                 map.put("deviceId", g.getDeviceId());

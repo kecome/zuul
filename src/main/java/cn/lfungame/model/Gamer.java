@@ -46,6 +46,14 @@ public class Gamer implements Serializable {
      */
     private Integer starSignId;
     /**
+     * 省
+     */
+    private Integer provinceId;
+    /**
+     * 市
+     */
+    private Integer cityId;
+    /**
      * 个性签名
      */
     private String signature;
@@ -200,5 +208,21 @@ public class Gamer implements Serializable {
 
     public void setWxId(String wxId) {
         this.wxId = wxId;
+    }
+
+    public Integer getProvinceId() {
+        return provinceId;
+    }
+
+    public void setProvinceId(Integer provinceId) {
+        this.provinceId = provinceId;
+    }
+
+    public Integer getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(Integer cityId) {
+        this.cityId = cityId;
     }
 }

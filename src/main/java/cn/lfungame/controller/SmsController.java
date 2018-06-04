@@ -26,7 +26,7 @@ public class SmsController {
     @PostMapping(value = "/send")
     Object send(@RequestBody Map<String, Object>param) throws Exception {
         ResponseMsg msg = new ResponseMsg<>();
-        //smsService.sendSms("18682339084");
+        smsService.sendSms("18682339084");
         System.out.println(JsonUtil.beanToJson(param));
         return msg;
     }

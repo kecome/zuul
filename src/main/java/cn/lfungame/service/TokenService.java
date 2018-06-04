@@ -40,7 +40,7 @@ public class TokenService {
     }
 
     /**
-     * 根据用户id  取出缓存内的token
+     * 根据token  取出缓存内的id
      * @param token
      * @return
      */
