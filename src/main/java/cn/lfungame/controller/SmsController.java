@@ -7,6 +7,7 @@ import cn.lfungame.util.JsonUtil;
 import cn.lfungame.util.ResponseMsg;
 import cn.lfungame.util.ValidatorUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,5 +39,17 @@ public class SmsController {
         return msg;
     }
 
+
+    @PostMapping(value = "/index")
+    Object index(@RequestBody Map<String, Object>param) throws Exception {
+        ResponseMsg msg = new ResponseMsg<>();
+        return msg;
+    }
+
+
+    public static void main(String[] args) {
+        Long id = 123L;
+        System.out.println(StringUtils.isEmpty(id));
+    }
 
 }

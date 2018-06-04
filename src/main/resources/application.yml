@@ -46,10 +46,10 @@ eureka:
 zuul:
   routes:
     teasegame:
-      path: /test/**
+      path: /game/**
       serviceId: tease-game
     game:
-      path: /game/**
+      path: /test/**
       serviceId: game
   strip-prefix: false
 logging:

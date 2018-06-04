@@ -40,6 +40,12 @@ public class LoginController {
     @Autowired
     private SmsService smsService;
 
+    /**
+     * 撩玩平台三种方式登录入口，登录成功获取后端接口访问凭证token
+     * @param param
+     * @return
+     * @throws Exception
+     */
     @LoginIgnore
     @PostMapping(value = "/login")
     Object login(@RequestBody Gamer param) throws Exception {
@@ -133,6 +139,12 @@ public class LoginController {
         return msg;
     }
 
+    /**
+     * 检查设备是否用手机号登录过，并返回手机号码
+     * @param param
+     * @return
+     * @throws Exception
+     */
     @LoginIgnore
     @PostMapping(value = "/checkPhone")
     Object checkPhone(@RequestBody Gamer param) throws Exception {
@@ -150,12 +162,5 @@ public class LoginController {
         return msg;
     }
 
-    //@LoginIgnore
-    @RequestMapping(value = "/index")
-    Object index(@RequestBody Gamer param) throws Exception {
-        ResponseMsg msg = new ResponseMsg();
-
-        return msg;
-    }
 
 }

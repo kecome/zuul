@@ -1,10 +1,13 @@
 package cn.lfungame.zuulfilter;
 
+import cn.lfungame.exception.BusinessException;
+import cn.lfungame.exception.ErrorInfo;
 import cn.lfungame.service.TokenService;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -40,10 +43,27 @@ public class TokenCheckFilter extends ZuulFilter {
     }
 
     @Override
-    public Object run() throws ZuulException {
+    public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
-        ctx.addZuulRequestHeader("id", tokenService.getToken(request.getHeader("token")) + "");
+
+        String token = request.getHeader("token");
+        if(!StringUtils.isEmpty(token)) {
+            Long id = tokenService.getToken(token);
+            if(!StringUtils.isEmpty(id)){
+                ctx.addZuulRequestHeader("id", tokenService.getToken(request.getHeader("token")) + "");
+                return null;
+            }
+        }
+        ctx.setSendZuulResponse(false);
+        String msgBody = "{\n" +
+                "    \"code\": 703,\n" +
+                "    \"message\": \"您尚未登陆，或者Session超时\",\n" +
+                "    \"data\": null\n" +
+                "}";
+        ctx.setResponseStatusCode(401);
+        ctx.setResponseBody(msgBody);
+        ctx.getResponse().setContentType("application/json;charset=UTF-8");
         if (request.getParameter("sample") != null) {
             // put the serviceId in `RequestContext`
             ctx.put(SERVICE_ID_KEY, request.getParameter("foo"));
