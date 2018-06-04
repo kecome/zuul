@@ -4,9 +4,11 @@ import cn.lfungame.model.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -16,6 +18,7 @@ import java.util.concurrent.TimeUnit;
  * @Description:
  */
 @Service
+@Transactional
 public class TokenService {
 
     @Autowired
@@ -29,13 +32,19 @@ public class TokenService {
      * @return
      */
     public Token genToken(Long id, Integer time, TimeUnit unit) {
+        //清除之前登录生成的token
+        Set<String> set = stringRedisTemplate.keys(id+"*");
+        for(String key : set) {
+            stringRedisTemplate.delete(key);
+        }
+        //生成新的token
         Token token = new Token();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
         calendar.add(calendar.DATE,time);
         token.setExpiration(calendar.getTime());
         token.setToken(UUID.randomUUID().toString().replaceAll("-", ""));
-        stringRedisTemplate.opsForValue().set(token.getToken(), id+"", time, unit);
+        stringRedisTemplate.opsForValue().set(id+token.getToken(), id+"", time, unit);
         return token;
     }
 
@@ -45,9 +54,14 @@ public class TokenService {
      * @return
      */
     public Long getToken(String token) {
-        String id = stringRedisTemplate.opsForValue().get(token);
-        if(id == null) return null;
-        return Long.valueOf(id);
+        Set<String> set = stringRedisTemplate.keys("*"+token);
+        if(set != null && set.size() == 1) {
+            for(String key : set) {
+                String id = key.substring(0, 18);
+                return Long.valueOf(id);
+            }
+        }
+        return null;
     }
 
 }
