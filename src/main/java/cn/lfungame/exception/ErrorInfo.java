@@ -18,8 +18,10 @@ public enum ErrorInfo {
      * 撩玩登录参数较验
      */
     ARGUMENT_NULL_ALL(10002, "wxId, phoneNumber, deviceId不能都为空", ""),
+    PHONENUMBER_IS_ERROR(10003, "不是合法的手机号码", ""),
+    PHONECODE_IS_ERROR(10004, "验证码不正确", ""),
 
-    ClASSID_IS_NULL(10003, "班级id为空", ""),
+
     YUN_REP_ERROR(10005, "云基础平台数据返回异常", ""),
     HOMEWORK_PUBLIC(10004, "作业已发布", ""),
     HOMEWORK_NOT_PUBLIC(10009, "作业未发布", ""),

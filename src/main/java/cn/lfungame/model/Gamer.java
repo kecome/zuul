@@ -82,6 +82,11 @@ public class Gamer implements Serializable {
      */
     private Date updated;
 
+    /**
+     * 手机登录时的验证码，不存入库
+     */
+    private String code;
+
     public Long getId() {
         return id;
     }
@@ -224,5 +229,13 @@ public class Gamer implements Serializable {
 
     public void setCityId(Integer cityId) {
         this.cityId = cityId;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

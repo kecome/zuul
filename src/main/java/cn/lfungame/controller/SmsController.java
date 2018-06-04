@@ -1,8 +1,11 @@
 package cn.lfungame.controller;
 
+import cn.lfungame.exception.BusinessException;
+import cn.lfungame.exception.ErrorInfo;
 import cn.lfungame.service.SmsService;
 import cn.lfungame.util.JsonUtil;
 import cn.lfungame.util.ResponseMsg;
+import cn.lfungame.util.ValidatorUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,8 +29,14 @@ public class SmsController {
     @PostMapping(value = "/send")
     Object send(@RequestBody Map<String, Object>param) throws Exception {
         ResponseMsg msg = new ResponseMsg<>();
-        smsService.sendSms("18682339084");
+        String phoneNumber = String.valueOf(param.get("phoneNumber"));
+        if(!ValidatorUtil.isMobile(phoneNumber)) {
+            throw new BusinessException(ErrorInfo.PHONENUMBER_IS_ERROR.code, ErrorInfo.PHONENUMBER_IS_ERROR.desc);
+        }
+        smsService.sendSms(phoneNumber);
         System.out.println(JsonUtil.beanToJson(param));
         return msg;
     }
+
+
 }

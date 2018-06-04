@@ -6,9 +6,11 @@ import cn.lfungame.interceptor.LoginIgnore;
 import cn.lfungame.model.Gamer;
 import cn.lfungame.model.Token;
 import cn.lfungame.service.GamerService;
+import cn.lfungame.service.SmsService;
 import cn.lfungame.service.TokenService;
 import cn.lfungame.util.ResponseMsg;
 import cn.lfungame.util.SnowflakeIdWorker;
+import cn.lfungame.util.ValidatorUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,6 +37,8 @@ public class LoginController {
     private GamerService gamerService;
     @Autowired
     private TokenService tokenService;
+    @Autowired
+    private SmsService smsService;
 
     @LoginIgnore
     @PostMapping(value = "/login")
@@ -79,6 +83,13 @@ public class LoginController {
         }
         //手机号登录
         if(!StringUtils.isEmpty(param.getPhoneNumber())) {
+            if(!ValidatorUtil.isMobile(param.getPhoneNumber())) {
+                throw new BusinessException(ErrorInfo.PHONENUMBER_IS_ERROR.code, ErrorInfo.PHONENUMBER_IS_ERROR.desc);
+            }
+            String code = smsService.getCode(param.getPhoneNumber());
+            if(!code.equals(param.getCode())) {
+                throw new BusinessException(ErrorInfo.PHONECODE_IS_ERROR.code, ErrorInfo.PHONECODE_IS_ERROR.desc);
+            }
             Gamer gamer = gamerService.selectGamerByPhoneNumber(param.getPhoneNumber());
             if(gamer == null) {  //通过手机号没找到玩家
                 gamer = new Gamer();

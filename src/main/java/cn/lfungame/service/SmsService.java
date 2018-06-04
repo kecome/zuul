@@ -78,4 +78,14 @@ public class SmsService {
         return code;
     }
 
+    /**
+     * 缓存取出手机验证码
+     * @param phoneNumber
+     * @return
+     */
+    public String getCode(String phoneNumber) {
+        String code = stringRedisTemplate.opsForValue().get(phoneNumber);
+        return code==null?"":code;
+    }
+
 }
