@@ -148,6 +148,9 @@ public class LoginController {
     @LoginIgnore
     @PostMapping(value = "/checkPhone")
     Object checkPhone(@RequestBody Gamer param) throws Exception {
+        if(StringUtils.isEmpty(param.getDeviceId())) {
+            throw new BusinessException(ErrorInfo.DEVICE_ID_NULL.code, ErrorInfo.DEVICE_ID_NULL.desc);
+        }
         ResponseMsg msg = new ResponseMsg();
         List<Gamer> list = gamerService.selectGamerByDeviceId(param.getDeviceId());
         for(Gamer g : list) {  //找出手机帐号

@@ -20,15 +20,10 @@ public enum ErrorInfo {
     ARGUMENT_NULL_ALL(10002, "wxId, phoneNumber, deviceId不能都为空", ""),
     PHONENUMBER_IS_ERROR(10003, "不是合法的手机号码", ""),
     PHONECODE_IS_ERROR(10004, "验证码不正确", ""),
+    DEVICE_ID_NULL(10005, "设备id不能为空", ""),
 
 
-    YUN_REP_ERROR(10005, "云基础平台数据返回异常", ""),
-    HOMEWORK_PUBLIC(10004, "作业已发布", ""),
-    HOMEWORK_NOT_PUBLIC(10009, "作业未发布", ""),
-    HOMEWORK_IS_NULL(10007, "作业不存在", ""),
-    STUDENTANSAWER_IS_NULL(10008, "学生作答不存在", ""),
-    HOMEWORK_SUBMIT(10010, "作业已提交", ""),
-    // PUBLICTIME_ERROR(10011, "作业预约发布时间不正确", ""),
+
     QUESTION_IS_NULL(10006, "作业题目不存在", "");
 
     /**

@@ -64,4 +64,11 @@ public class TokenService {
         return null;
     }
 
+    public void xx(String key, int time) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.add(calendar.DATE,time);
+       // stringRedisTemplate.expire(key, calendar.gett)
+    }
+
 }
