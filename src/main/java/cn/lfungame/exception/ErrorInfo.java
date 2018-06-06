@@ -21,10 +21,11 @@ public enum ErrorInfo {
     PHONENUMBER_IS_ERROR(10003, "不是合法的手机号码", ""),
     PHONECODE_IS_ERROR(10004, "验证码不正确", ""),
     DEVICE_ID_NULL(10005, "设备id不能为空", ""),
+    SMS_ERROR(10006, "短信接口返回错误", ""),
 
 
 
-    QUESTION_IS_NULL(10006, "作业题目不存在", "");
+    QUESTION_IS_NULL(10340, "作业题目不存在", "");
 
     /**
      * 异常码

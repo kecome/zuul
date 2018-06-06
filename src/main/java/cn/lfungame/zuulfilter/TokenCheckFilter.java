@@ -11,6 +11,8 @@ import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.springframework.cloud.netflix.zuul.filters.support.FilterConstants.FORWARD_TO_KEY;
 import static org.springframework.cloud.netflix.zuul.filters.support.FilterConstants.PRE_TYPE;
 import static org.springframework.cloud.netflix.zuul.filters.support.FilterConstants.SERVICE_ID_KEY;
@@ -52,6 +54,8 @@ public class TokenCheckFilter extends ZuulFilter {
             Long id = tokenService.getToken(token);
             if(!StringUtils.isEmpty(id)){
                 ctx.addZuulRequestHeader("id", tokenService.getToken(request.getHeader("token")) + "");
+                //更新token的过期时间
+                tokenService.updateExpire(id+token, 1, TimeUnit.DAYS);
                 return null;
             }
         }

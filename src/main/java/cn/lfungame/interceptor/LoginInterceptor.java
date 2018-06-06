@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
 import java.lang.annotation.Annotation;
 import java.nio.charset.Charset;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Auther: xuke
@@ -52,6 +53,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             if(id == null) {
                 throw new BusinessException(ErrorInfo.USER_IS_NULL.code, ErrorInfo.USER_IS_NULL.desc);
             }
+            tokenService.updateExpire(id+token, 1, TimeUnit.DAYS);
             return true;
         }else {  //忽略登录拦截
             return true;

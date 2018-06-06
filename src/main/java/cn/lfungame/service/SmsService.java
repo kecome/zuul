@@ -1,4 +1,6 @@
 package cn.lfungame.service;
+import cn.lfungame.exception.BusinessException;
+import cn.lfungame.exception.ErrorInfo;
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.IAcsClient;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest;
@@ -74,8 +76,9 @@ public class SmsService {
         SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);
         if(sendSmsResponse.getCode()!= null && sendSmsResponse.getCode().equals("OK")){
             stringRedisTemplate.opsForValue().set(telephone, code+"", 1, TimeUnit.MINUTES);
+            return code;
         }
-        return code;
+        throw new BusinessException(ErrorInfo.SMS_ERROR.code, ErrorInfo.SMS_ERROR.desc);
     }
 
     /**
