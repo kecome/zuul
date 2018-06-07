@@ -12,8 +12,9 @@
         <result property="head" column="head"/>
         <result property="sex" column="sex"/>
         <result property="age" column="age"/>
-        <result property="starSignId" column="starSignId"/>
-        <result property="provinceId" column="provinceId"/>
+        <result property="starSign" column="starSign"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
         <result property="signature" column="signature"/>
         <result property="score" column="score"/>
         <result property="expPoints" column="expPoints"/>
@@ -48,11 +49,14 @@
             <if test='age != null'>
             age=#{age},
             </if>
-            <if test='starSignId != null'>
-                starSignId=#{starSignId},
+            <if test='starSign != null and starSign!=""'>
+                starSign=#{starSign},
             </if>
-            <if test='provinceId != null'>
-                provinceId=#{provinceId},
+            <if test='province != null and province!=""'>
+                province=#{province},
+            </if>
+            <if test='city != null and city!=""'>
+                city=#{city},
             </if>
             <if test='signature != null and signature!=""'>
                 signature=#{signature},
@@ -91,7 +95,7 @@
 
     <insert id="insertGamer" parameterType="cn.lfungame.model.Gamer">
         insert into gamer
-               (id,wxId,deviceId,phoneNumber,nickName,head,sex,age,starSignId,provinceId,cityId,signature,score,expPoints,goldCoin,diamonds,created, updated)
-        values(#{id},#{wxId},#{deviceId},#{phoneNumber},#{nickName},#{head},#{sex},#{age},#{starSignId},#{provinceId},#{cityId},#{signature},#{score},#{expPoints},#{goldCoin},#{diamonds},#{created},#{updated})
+               (id,wxId,deviceId,phoneNumber,nickName,head,sex,age,starSign,province,city,signature,score,expPoints,goldCoin,diamonds,created, updated)
+        values(#{id},#{wxId},#{deviceId},#{phoneNumber},#{nickName},#{head},#{sex},#{age},#{starSign},#{province},#{city},#{signature},#{score},#{expPoints},#{goldCoin},#{diamonds},#{created},#{updated})
     </insert>
 </mapper>

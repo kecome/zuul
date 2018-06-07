@@ -44,15 +44,15 @@ public class Gamer implements Serializable {
     /**
      * 星座 id
      */
-    private Integer starSignId;
+    private String starSign;
     /**
      * 省
      */
-    private Integer provinceId;
+    private String province;
     /**
      * 市
      */
-    private Integer cityId;
+    private String city;
     /**
      * 个性签名
      */
@@ -135,14 +135,6 @@ public class Gamer implements Serializable {
         this.age = age;
     }
 
-    public Integer getStarSignId() {
-        return starSignId;
-    }
-
-    public void setStarSignId(Integer starSignId) {
-        this.starSignId = starSignId;
-    }
-
     public String getSignature() {
         return signature;
     }
@@ -215,27 +207,35 @@ public class Gamer implements Serializable {
         this.wxId = wxId;
     }
 
-    public Integer getProvinceId() {
-        return provinceId;
-    }
-
-    public void setProvinceId(Integer provinceId) {
-        this.provinceId = provinceId;
-    }
-
-    public Integer getCityId() {
-        return cityId;
-    }
-
-    public void setCityId(Integer cityId) {
-        this.cityId = cityId;
-    }
-
     public String getCode() {
         return code;
     }
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStarSign() {
+        return starSign;
+    }
+
+    public void setStarSign(String starSign) {
+        this.starSign = starSign;
     }
 }

@@ -2,6 +2,7 @@ package cn.lfungame.controller;
 
 import cn.lfungame.exception.BusinessException;
 import cn.lfungame.exception.ErrorInfo;
+import cn.lfungame.interceptor.LoginIgnore;
 import cn.lfungame.service.SmsService;
 import cn.lfungame.util.JsonUtil;
 import cn.lfungame.util.ResponseMsg;
@@ -27,6 +28,7 @@ public class SmsController {
     @Autowired
     private SmsService smsService;
 
+    @LoginIgnore
     @PostMapping(value = "/send")
     Object send(@RequestBody Map<String, Object>param) throws Exception {
         ResponseMsg msg = new ResponseMsg<>();
