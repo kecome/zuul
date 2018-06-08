@@ -42,16 +42,4 @@ public class SmsController {
     }
 
 
-    @PostMapping(value = "/index")
-    Object index(@RequestBody Map<String, Object>param) throws Exception {
-        ResponseMsg msg = new ResponseMsg<>();
-        return msg;
-    }
-
-
-    public static void main(String[] args) {
-        Long id = 123L;
-        System.out.println(StringUtils.isEmpty(id));
-    }
-
 }

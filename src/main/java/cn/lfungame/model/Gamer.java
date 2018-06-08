@@ -1,5 +1,8 @@
 package cn.lfungame.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,83 +11,64 @@ import java.util.Date;
  * @Date: 2018/5/28 16:51
  * @Description: 游戏玩家
  */
+@ApiModel(value="Gamer", description = "玩家对象")
 public class Gamer implements Serializable {
-    /**
-     * 玩家id
-     */
+
+    @ApiModelProperty(value="玩家id")
     private Long id;
-    /**
-     * 微信登录成功后返回id
-     */
+
+    @ApiModelProperty(value="微信登录成功后返回id")
     private String wxId;
-    /**
-     * 手机号码
-     */
+
+    @ApiModelProperty(value="手机号码")
     private String phoneNumber;
-    /**
-     * 玩家设备唯一标识id
-     */
+
+    @ApiModelProperty(value="玩家设备唯一标识id")
     private String deviceId;
-    /**
-     * 呢称
-     */
+
+    @ApiModelProperty(value="呢称")
     private String nickName;
-    /**
-     * 头像
-     */
+
+    @ApiModelProperty(value="头像")
     private String head;
-    /**
-     * 性别
-     */
+
+    @ApiModelProperty(value="性别")
     private Integer sex;
-    /**
-     * 出生年月
-     */
+
+    @ApiModelProperty(value="出生年月")
     private Date age;
-    /**
-     * 星座 id
-     */
+
+    @ApiModelProperty(value="星座 ")
     private String starSign;
-    /**
-     * 省
-     */
+
+    @ApiModelProperty(value="省 ")
     private String province;
-    /**
-     * 市
-     */
+
+    @ApiModelProperty(value="市 ")
     private String city;
-    /**
-     * 个性签名
-     */
+
+    @ApiModelProperty(value="个性签名 ")
     private String signature;
-    /**
-     * 积分
-     */
+
+    @ApiModelProperty(value="积分 ")
     private Long score;
-    /**
-     * 经验值
-     */
+
+    @ApiModelProperty(value="经验值 ")
     private Long expPoints;
-    /**
-     * 金币
-     */
+
+    @ApiModelProperty(value="金币 ")
     private Long goldCoin;
-    /**
-     * 钻石
-     */
+
+    @ApiModelProperty(value="钻石 ")
     private Long diamonds;
-    /**
-     * 创建时间
-     */
+
+    @ApiModelProperty(value="创建时间 ")
     private Date created;
-    /**
-     * 修改时间
-     */
+
+    @ApiModelProperty(value="修改时间")
     private Date updated;
 
-    /**
-     * 手机登录时的验证码，不存入库
-     */
+    @ApiModelProperty(value="手机登录时的验证码，不存入库")
     private String code;
 
     public Long getId() {
