@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
  * @Date: 2018/5/15 18:23
  * @Description: 登录fdf
  */
-@Api("登录相关api")
+@Api(tags = "玩家登录相关api")
 @RestController
 @RequestMapping("/liaowan")
 public class LoginController {
@@ -51,10 +51,12 @@ public class LoginController {
     @LoginIgnore
     @PostMapping(value = "/login")
     @ApiOperation(value="玩家登录", notes="根据微信id: wxId 手机号：phoneNumber 设备id：deviceId注册登录")
-    @ApiImplicitParam(paramType = "body", name="param", value = "玩家实体gamer", required = true, dataType = "Gamer")
     Object login(@RequestBody Gamer param) throws Exception {
         if(StringUtils.isEmpty(param.getWxId()) && StringUtils.isEmpty(param.getPhoneNumber()) && StringUtils.isEmpty(param.getDeviceId())) {
             throw new BusinessException(ErrorInfo.ARGUMENT_NULL_ALL.code, ErrorInfo.ARGUMENT_NULL_ALL.desc);
+        }
+        if(StringUtils.isEmpty(param.getDeviceId())) {
+            throw new BusinessException(ErrorInfo.DEVICE_ID_NULL.code, ErrorInfo.DEVICE_ID_NULL.desc);
         }
         ResponseMsg msg = new ResponseMsg();
         //微信号登录
@@ -145,14 +147,13 @@ public class LoginController {
 
     /**
      * 检查设备是否用手机号登录过，并返回手机号码
-     * @param deviceId
+     * @param gamer
      * @return
      * @throws Exception
      */
     @LoginIgnore
     @PostMapping(value = "/checkPhone")
-    //@ApiOperation(value="设备id获取手机号", notes="根据设备id获取手机号")
-   // @ApiImplicitParam(paramType = "body", name="deviceId", value = "玩家实体gamer", required = true, dataType = "string")
+    @ApiOperation(value="设备id获取手机号", notes="根据设备id获取手机号")
     Object checkPhone(@RequestBody Gamer gamer) throws Exception {
         if(StringUtils.isEmpty(gamer.getDeviceId())) {
             throw new BusinessException(ErrorInfo.DEVICE_ID_NULL.code, ErrorInfo.DEVICE_ID_NULL.desc);
