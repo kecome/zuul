@@ -135,6 +135,7 @@ public class LoginController {
         Gamer gamer = new Gamer();
         Long id = SnowflakeIdWorker.getInstance().nextId();
         gamer.setId(id);
+        gamer.setNickName("游客");
         gamer.setDeviceId(param.getDeviceId());
         Date date = new Date();
         gamer.setUpdated(date);

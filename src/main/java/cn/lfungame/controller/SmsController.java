@@ -30,6 +30,7 @@ public class SmsController {
 
     @LoginIgnore
     @PostMapping(value = "/send")
+
     Object send(@RequestBody Map<String, Object>param) throws Exception {
         ResponseMsg msg = new ResponseMsg<>();
         String phoneNumber = String.valueOf(param.get("phoneNumber"));
