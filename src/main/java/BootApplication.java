@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @Auther: xuke
  * @Date: 2018/5/15 09:09
- * @Description:
+ * @Description:bbbb
  */
 @EnableAutoConfiguration
 @ComponentScan(basePackages={"cn.lfungame"})
