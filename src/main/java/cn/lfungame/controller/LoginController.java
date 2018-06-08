@@ -80,9 +80,13 @@ public class LoginController {
                 gamer.setWxId(param.getWxId());
                 gamer.setDeviceId(param.getDeviceId());
                 gamer.setHead(param.getHead());
+                gamer.setNickName(param.getNickName());
+                gamer.setCity(param.getCity());
+                gamer.setProvince(param.getProvince());
                 Date date = new Date();
                 gamer.setUpdated(date);
                 gamer.setCreated(date);
+                gamer.setSex(param.getSex());
                 gamerService.insertGamer(gamer);
                 Token token = tokenService.genToken(id, 1, TimeUnit.DAYS);
                 msg.setData(token);

@@ -49,6 +49,8 @@ public class TokenCheckFilter extends ZuulFilter {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
 
+        String uri = request.getRequestURI();
+        if(uri.endsWith("/game/v2/api-docs")) return null;
         String token = request.getHeader("token");
         if(!StringUtils.isEmpty(token)) {
             Long id = tokenService.getToken(token);
