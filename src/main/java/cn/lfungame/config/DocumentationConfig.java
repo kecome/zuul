@@ -23,7 +23,6 @@ public class DocumentationConfig implements SwaggerResourcesProvider {
         resources.add(swaggerResource("zuul", "/v2/api-docs", "2.0"));
         return resources;
     }
-
     private SwaggerResource swaggerResource(String name, String location, String version) {
         SwaggerResource swaggerResource = new SwaggerResource();
         swaggerResource.setName(name);

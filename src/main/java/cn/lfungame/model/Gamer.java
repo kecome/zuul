@@ -32,7 +32,7 @@ public class Gamer implements Serializable {
     @ApiModelProperty(value="头像")
     private String head;
 
-    @ApiModelProperty(value="性别")
+    @ApiModelProperty(value="性别 0:男  1:女")
     private Integer sex;
 
     @ApiModelProperty(value="出生年月")
