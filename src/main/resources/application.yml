@@ -1,16 +1,15 @@
-#默认环境配置
+#查看springboot开启了哪些配置
+debug: false
 spring:
   profiles:
     active: default
 
-server:
-  port: 8484
 spring:
-  profiles: default
+  profiles:  default
   application:
     name: zuul
   datasource:
-    name: test
+    name: db
     url: jdbc:mysql://112.74.52.200:8066/TESTDB?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
     password: 123456
@@ -74,6 +73,92 @@ sms:
   accessKeySecret: rnzanAg7vc31EQxbhCLxtdT47PGu8I
   signName: 乐云无线
   templateCode: SMS_136161034
+
+server:
+  port: 8484
+
+
+---
+
+
+spring:
+  profiles:  dev
+  application:
+    name: zuul
+  datasource:
+    name: db
+    url: jdbc:mysql://112.74.52.200:8066/TESTDB?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  redis:
+    database: 1
+    host: 112.74.52.200
+    port: 2379
+    password: Lywx3403
+    timeout: 5000
+    jedis:
+      pool:
+        max-active: 2000
+        max-idle: 500
+        max-wait: 1000
+        min-idle: 50
+mybatis:
+  mapper-locations: classpath:cn/lfungame/mapper/*.xml
+  type-aliases-package: cn.lfungame.model
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+zuul:
+  routes:
+    teasegame:
+      path: /game/**
+      serviceId: tease-game
+    game:
+      path: /test/**
+      serviceId: game
+  strip-prefix: false
+logging:
+  level:
+    cn.lfungame.mapper: debug
+oss:
+  endpoint: oss-cn-shenzhen.aliyuncs.com
+  accessKeyId: LTAI5q19QqAyDDEO
+  accessKeySecret: rnzanAg7vc31EQxbhCLxtdT47PGu8I
+  roleArn: acs:ram::1605119804803037:role/aliyunosstokengeneratorrole
+  roleSessionName: external-username
+sms:
+  product: Dysmsapi
+  domain: dysmsapi.aliyuncs.com
+  accessKeyId: LTAI5q19QqAyDDEO
+  accessKeySecret: rnzanAg7vc31EQxbhCLxtdT47PGu8I
+  signName: 乐云无线
+  templateCode: SMS_136161034
+
+server:
+  port: 8383
+
+
+
+
+
+
 
 
 

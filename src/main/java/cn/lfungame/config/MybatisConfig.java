@@ -26,11 +26,11 @@ public class MybatisConfig {
     @Autowired
     private Environment env;
 
-    @Value("${spring.datasource.driver-class-name}")
-    private String driverClassName;
-
-    @Value("${spring.datasource.url}")
-    private String url;
+//    @Value("${spring.datasource.driver-class-name}")
+//    private String driverClassName;
+//
+//    @Value("${spring.datasource.url}")
+//    private String url;
 
     /**
      * 创建数据源

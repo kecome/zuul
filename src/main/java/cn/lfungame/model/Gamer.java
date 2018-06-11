@@ -1,5 +1,6 @@
 package cn.lfungame.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -36,6 +37,7 @@ public class Gamer implements Serializable {
     private Integer sex;
 
     @ApiModelProperty(value="出生年月")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date age;
 
     @ApiModelProperty(value="星座 ")
@@ -63,9 +65,11 @@ public class Gamer implements Serializable {
     private Long diamonds;
 
     @ApiModelProperty(value="创建时间 ")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date created;
 
     @ApiModelProperty(value="修改时间")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date updated;
 
     @ApiModelProperty(value="手机登录时的验证码，不存入库")
