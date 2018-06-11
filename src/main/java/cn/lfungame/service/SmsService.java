@@ -75,7 +75,7 @@ public class SmsService {
         // hint 此处可能会抛出异常，注意catch
         SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);
         if(sendSmsResponse.getCode()!= null && sendSmsResponse.getCode().equals("OK")){
-            stringRedisTemplate.opsForValue().set(telephone, code+"", 2, TimeUnit.MINUTES);
+            stringRedisTemplate.opsForValue().set(telephone, code+"", 3, TimeUnit.MINUTES);
             return code;
         }
         throw new BusinessException(ErrorInfo.SMS_ERROR.code, ErrorInfo.SMS_ERROR.desc);
