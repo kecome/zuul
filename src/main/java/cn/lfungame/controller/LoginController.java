@@ -12,6 +12,7 @@ import cn.lfungame.util.ResponseMsg;
 import cn.lfungame.util.SnowflakeIdWorker;
 import cn.lfungame.util.ValidatorUtil;
 import io.swagger.annotations.*;
+import io.swagger.models.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,15 +51,16 @@ public class LoginController {
      */
     @LoginIgnore
     @PostMapping(value = "/login")
-    @ApiOperation(value="玩家登录", notes="根据微信id: wxId 手机号：phoneNumber 设备id：deviceId注册登录")
-    Object login(@RequestBody Gamer param) throws Exception {
+    @ApiOperation(value="玩家登录", notes="根据微信wxId  手机号phoneNumber  设备deviceId注册登录")
+   // @ApiResponses({ @ApiResponse(code = 200, message = "请求成功", response=Token.class)})
+    ResponseMsg<Token> login(@RequestBody Gamer param) throws Exception {
         if(StringUtils.isEmpty(param.getWxId()) && StringUtils.isEmpty(param.getPhoneNumber()) && StringUtils.isEmpty(param.getDeviceId())) {
             throw new BusinessException(ErrorInfo.ARGUMENT_NULL_ALL.code, ErrorInfo.ARGUMENT_NULL_ALL.desc);
         }
         if(StringUtils.isEmpty(param.getDeviceId())) {
             throw new BusinessException(ErrorInfo.DEVICE_ID_NULL.code, ErrorInfo.DEVICE_ID_NULL.desc);
         }
-        ResponseMsg msg = new ResponseMsg();
+        ResponseMsg<Token> msg = new ResponseMsg();
         //微信号登录
         if(!StringUtils.isEmpty(param.getWxId())) {
             Gamer gamer = gamerService.selectGamerByWxId(param.getWxId());
@@ -152,19 +154,19 @@ public class LoginController {
 
     /**
      * 检查设备是否用手机号登录过，并返回手机号码
-     * @param gamer
+     * @param param
      * @return
      * @throws Exception
      */
     @LoginIgnore
     @PostMapping(value = "/checkPhone")
-    @ApiOperation(value="设备id获取手机号", notes="根据设备id获取手机号")
-    Object checkPhone(@RequestBody Gamer gamer) throws Exception {
-        if(StringUtils.isEmpty(gamer.getDeviceId())) {
+    @ApiOperation(value="设备id获取手机号", notes="根据设备deviceId获取手机号")
+    ResponseMsg<Map<String, String>> checkPhone(@RequestBody Map<String, String> param) throws Exception {
+        if(StringUtils.isEmpty(param.get("deviceId"))) {
             throw new BusinessException(ErrorInfo.DEVICE_ID_NULL.code, ErrorInfo.DEVICE_ID_NULL.desc);
         }
         ResponseMsg msg = new ResponseMsg();
-        List<Gamer> list = gamerService.selectGamerByDeviceId(gamer.getDeviceId());
+        List<Gamer> list = gamerService.selectGamerByDeviceId(param.get("deviceId"));
         for(Gamer g : list) {  //找出手机帐号
             if(!StringUtils.isEmpty(g.getPhoneNumber())) {
                 Map<String, Object> map = new HashMap<>();

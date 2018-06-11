@@ -1,5 +1,8 @@
 package cn.lfungame.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,14 +11,17 @@ import java.util.Date;
  * @Date: 2018/5/15 18:42
  * @Description: 访问凭据token
  */
+@ApiModel(value="token", description = "玩家对象")
 public class Token implements Serializable {
     /**
      * token字符串
      */
+    @ApiModelProperty(value="token字符串")
     private String token;
     /**
      * 有效时间
      */
+    @ApiModelProperty(value="有效时间")
     private Date expiration;
 
     public String getToken() {

@@ -1,15 +1,24 @@
 package cn.lfungame.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * @Auther: xuke
  * @Date: 2018/5/30 14:34
  * @Description: oss第三方访问授权AK
  */
+@ApiModel(value="OssAK", description = "oss第三方访问授权AK")
 public class OssAK {
+    @ApiModelProperty(value="请求id")
     private String requestId;
+    @ApiModelProperty(value="返回accessKeyId")
     private String accessKeyId;
+    @ApiModelProperty(value="accessKeySecret")
     private String accessKeySecret;
+    @ApiModelProperty(value="securityToken")
     private String securityToken;
+    @ApiModelProperty(value="有效时间")
     private String expiration;
 
     public String getRequestId() {

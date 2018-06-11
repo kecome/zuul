@@ -7,6 +7,8 @@ import cn.lfungame.service.SmsService;
 import cn.lfungame.util.JsonUtil;
 import cn.lfungame.util.ResponseMsg;
 import cn.lfungame.util.ValidatorUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +23,7 @@ import java.util.Map;
  * @Date: 2018/5/30 16:35
  * @Description:
  */
+@Api(tags = "短信发送api")
 @RestController
 @RequestMapping(value = "/sms")
 public class SmsController {
@@ -30,8 +33,8 @@ public class SmsController {
 
     @LoginIgnore
     @PostMapping(value = "/send")
-
-    Object send(@RequestBody Map<String, Object>param) throws Exception {
+    @ApiOperation(value="发送短信", notes="必填参数手机号phoneNumber \n  设备deviceId")
+    ResponseMsg send(@RequestBody Map<String, String>param) throws Exception {
         ResponseMsg msg = new ResponseMsg<>();
         String phoneNumber = String.valueOf(param.get("phoneNumber"));
         if(!ValidatorUtil.isMobile(phoneNumber)) {

@@ -46,7 +46,7 @@ public class Swagger2Config {
 
     private ApiInfo apiInfo() {// 创建API的基本信息，这些信息会在Swagger UI中进行显示
         return new ApiInfoBuilder()
-                .title("Spring Boot中使用Swagger2构建RESTful API")// API 标题
+                .title("SpringBoot中使用Swagger2构建API")// API 标题
                 .description("前后端联调swagger api 文档")// API描述
                 .contact(new Contact("徐科", "http://www.2345.com", "741919791@qq.com"))// 联系人
                 .version("1.0")// 版本号
